@@ -39,7 +39,7 @@ class HtmlProductWriter extends ShopProductWriter
 
         $booktable = $this->generateBookTable($bookproducts);
         $cdtable = $this->generateCdTable($cdproducts);
-        $gametable =$this->generateAddProductForm($gameproducts);
+        $gametable =$this->generateGameTable($gameproducts);
 
         $addProduct = $this->generateAddProductForm();
 
@@ -153,32 +153,38 @@ class HtmlProductWriter extends ShopProductWriter
     {
         return '
           <hr />
-          <h2 style=" background:#dedede; width:500px; padding:20px;margin-left:500px; border-radius:10px; text-align:center;">ADD NEW PRODUCT</h2>
-         <form action="./index.php" method="post" style="background:#e8e6e6; width:500px; padding:20px; margin-left:500px;border-radius:10px;">
-                <label for="producttype">Product Type:</label>
-                <select id="producttype" name="producttype">
+          <h2>ADD NEW PRODUCT</h2>
+         <form action="./index.php" method="post">
+          <label for="producttype">Product Type:</label>
+          <select id="producttype" name="producttype">
                 <option value="cd">CD</option>
                 <option value="book">Book</option>
                 <option value="game">Game</option>
-                </select><br><br> 
-
-                <label for="name">Author / Artist</label><br>
-                <label for="fname">First Name:</label>
-                <input style="margin-left:223px;"type="text" id="fname" name="fname"><br><br>
-                <label for="sname">Main Name/Surname/Console:</label>
-                <input style="margin-left:100px;"type="text" id="sname" name="sname"><br><br>
-
-                <label for="title">Title:</label>
-                <input style="margin-left:265px;"type="text" id="title" name="title"><br><br>
-
-                <label  for="pages">Pages / Duration / PEGI:</label>
-                <input style="margin-left:140px;" type="text" id="pages" name="pages"><br><br>
-
-                <label for="price">Price:</label>
-                <input style="margin-left:262px;"type="text" id="price" name="price"><br><br>
-                <input style="margin-left:220px; background:#D0E4F5;" type="submit" value="Submit">
-
+          </select> 
+          <br />
+          <br />
+         <label for="name">Author / Artist</label><br />
+         <label for="fname">First Name:</label>
+           <input type="text" id="fname" name="fname"><br><br>
+          <label for="sname">Main Name/Surname/Console:</label>
+           <input type="text" id="sname" name="sname">
+           <br />
+           <br />
+         <label for="title">Title:</label>
+           <input type="text" id="title" name="title">
+           <br />
+           <br />
+         <label for="pages">Pages/Duration/Pegi:</label>
+           <input type="text" id="pages" name="pages">
+           <br />
+           <br />
+          <label for="price">Price:</label>
+           <input type="text" id="price" name="price">
+           <br />
+           <br /> 
+           <button type="submit">Submit</button>
         </form> 
+          
         ';
     }
 }

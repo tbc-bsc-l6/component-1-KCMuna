@@ -18,24 +18,43 @@ class JsonProductWriter extends ShopProductWriter
         echo $json_str;
     }
 
+    //creating private function
     private function addEachProductAsJSON($product){
         $json_product = [];
-        $json_product['id'] = $product->getId();
-        $json_product['title'] = $product->getTitle();
-        $json_product['firstname'] = $product->getFirstName();
-        $json_product['mainname'] = $product->getMainName();
-        $json_product['price'] = $product->getPrice();
+        $json_product['id'] = $product->getId();//getting product id
+        $json_product['title'] = $product->getTitle();//getting product title
+        $json_product['firstname'] = $product->getFirstName();//getting product firstname
+        $json_product['mainname'] = $product->getMainName();//getting product main name
+        $json_product['price'] = $product->getPrice();//getting product price
 
+
+        //check if $Product belongs to the BookProduct class
         if($product instanceof BookProduct) {
+
+            //get the NumberOfPages function
             $json_product['numpages'] = $product->getNumberOfPages();
+
+            //assigning specific type
             $json_product['type'] = "book";
         }
+
+        //check if $Product belongs to the CDProduct class
         if($product instanceof CDProduct) {
+
+            //get the PlayLength function
             $json_product['playlength'] = $product->getPlayLength();
+            
+            //assigning specific type
             $json_product['type'] = "cd";
         }
+
+        //check if $Product belongs to the GameProduct class
         if($product instanceof GameProduct) {
+
+            //get the NumberOfPegi function
             $json_product['numPegi'] = $product->getNumberOfPegi();
+            
+            //assigning specific type
             $json_product['type'] = "game";
         }
 

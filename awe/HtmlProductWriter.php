@@ -3,7 +3,7 @@
 
 namespace awe;
 
-
+//HtmlProductWriter class using properties of other ShopProductWriter class with the extends keyword
 class HtmlProductWriter extends ShopProductWriter
 {
 
@@ -27,38 +27,47 @@ class HtmlProductWriter extends ShopProductWriter
 
     private function htmlBody()
     {
+        //Declaring an array attributes called bookproducts,cdproducts,gameproducts for book,cd and game respectively
         $bookproducts = [];
         $cdproducts = [];
         $gameproducts = [];
 
+        //foreach loop for displaying array elements
         foreach ($this->products as $product) {
+
+        //instance of operator used for controlling objects for book,cd and game respectively
          if($product instanceof BookProduct) $bookproducts[] = $product;
          if($product instanceof CdProduct) $cdproducts[] = $product;
          if($product instanceof GameProduct) $gameproducts[]=$product;
         }
 
+        //calling function for all three table:book cd and game
         $booktable = $this->generateBookTable($bookproducts);
         $cdtable = $this->generateCdTable($cdproducts);
         $gametable =$this->generateGameTable($gameproducts);
 
+        //calling function for adding new product
         $addProduct = $this->generateAddProductForm();
 
         return
             '<body>'
-            . $booktable .
+            . $booktable .//returns the objects of booktable
             '<br />'
-            .$cdtable.
+            .$cdtable.//returns the objects of cdtable
             '<br />'
-            .$gametable.
+            .$gametable.//returns the objects of gametable
             '<br />'
-            .$addProduct .
+            .$addProduct .//returns the objects of added product
             '</body>';
     }
 
+    //generating table for books
     private function generateBookTable($bookproducts)
     {
         $contents = '';
         foreach ($bookproducts as $book) {
+
+            //calling get function to assign the value on variable and storing it in the new variable called $contents
             $contents .= '<tr>
                   <td>'.$book->getFullName().'</td>'
                 .'<td>'.$book->getTitle().'</td>'
@@ -68,6 +77,10 @@ class HtmlProductWriter extends ShopProductWriter
                 </tr>';
         }
         return
+
+        /*creating table
+        creating tablehead
+        */
             '
             <h3>BOOKS</h3>
             <table class="paleBlueRows equal-width">
@@ -81,15 +94,18 @@ class HtmlProductWriter extends ShopProductWriter
                     </tr>
                     </thead>
                     <tbody>'
-            .$contents.
+            .$contents.//displaying the content of the table
                 '</tbody>
             </table>';
     }
 
+     //generating table for cds 
     private function generateCdTable($cdproducts)
     {
         $contents = '';
         foreach ($cdproducts as $cd) {
+
+            //calling get function to assign the value on variable and storing it in the new variable called $contents
             $contents .= '<tr>
                   <td>'.$cd->getFullName().'</td>'
                 .'<td>'.$cd->getTitle().'</td>'
@@ -99,6 +115,10 @@ class HtmlProductWriter extends ShopProductWriter
                 </tr>';
         }
         return
+
+        /*creating table
+        creating tablehead
+        */
             '
             <h3>CDs</h3>
             <table class="paleBlueRows equal-width">
@@ -112,15 +132,17 @@ class HtmlProductWriter extends ShopProductWriter
                     </tr>
                     </thead>
                     <tbody>'
-            .$contents.
+            .$contents.//displaying the content of the table
             '</tbody>
             </table>';
     }
-
+         //generating table for games 
       private function generateGameTable($gameproducts)
     {
         $contents = '';
         foreach ($gameproducts as $game) {
+
+            //calling get function to assign the value on variable and storing it in the new variable called $contents
             $contents .= '<tr>
                   <td>'.$game->getFullName().'</td>'
                 .'<td>'.$game->getTitle().'</td>'
@@ -130,6 +152,10 @@ class HtmlProductWriter extends ShopProductWriter
                 </tr>';
         }
         return
+
+        /*creating table
+        creating tablehead
+        */
             '
             <h3>GAMES</h3>
             <table class="paleBlueRows equal-width">
@@ -143,7 +169,7 @@ class HtmlProductWriter extends ShopProductWriter
                     </tr>
                     </thead>
                     <tbody>'
-            .$contents.
+            .$contents.//displaying the content of the table
             '</tbody>
             </table>';
     }
@@ -151,8 +177,10 @@ class HtmlProductWriter extends ShopProductWriter
 
     private function generateAddProductForm()
     {
+        //creating form to add new product
         return '
           <hr />
+
           <h2>ADD NEW PRODUCT</h2>
          <form action="./index.php" method="post">
           <label for="producttype">Product Type:</label>
